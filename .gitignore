@@ -1,0 +1,15 @@
+.dub
+docs.json
+__dummy.html
+docs/
+/baddriver
+baddriver.so
+baddriver.dylib
+baddriver.dll
+baddriver.a
+baddriver.lib
+baddriver-test-*
+*.exe
+*.o
+*.obj
+*.lst
