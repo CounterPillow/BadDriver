@@ -67,12 +67,17 @@ string[] get_sorted_filenames(string path, string pattern) {
     import std.file : dirEntries, SpanMode;
     import std.format : formattedRead;
     import std.path : chainPath;
+    import std.conv: ConvException;
     auto ap = appender!(Tuple!(string, int)[]);
     ap.reserve(1000);
     string p = chainPath(path, pattern).array;
     foreach(f; dirEntries(path, SpanMode.shallow)) {
         int read, num;
-        read = f.name.formattedRead(p, &num);
+        try {
+            read = f.name.formattedRead(p, &num);
+        } catch (ConvException) {
+
+        }
         if(read != 0) {
             ap.put!(Tuple!(string, int))(tuple(f.name, num));
         }
